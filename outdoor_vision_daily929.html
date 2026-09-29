@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>户外视野时报 · OUTDOOR VISION DAILY</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #d8cfba;
+    font-family: Georgia, 'Songti SC', 'STSong', 'SimSun', serif;
+    color: #1a1a1a;
+    padding: 24px 12px;
+  }
+  .paper {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #f2e9d6;
+    border: 1px solid #b8ab8e;
+    box-shadow: 0 8px 40px rgba(60, 45, 20, .35);
+    padding: 36px 40px 28px;
+    background-image: radial-gradient(#e2d5ba 1px, transparent 1px);
+    background-size: 6px 6px;
+  }
+  .masthead {
+    text-align: center;
+    border-bottom: 4px double #1a1a1a;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+  }
+  .masthead .kicker { font-size: 12px; letter-spacing: 6px; text-transform: uppercase; color: #5a4a2e; margin-bottom: 6px; }
+  .masthead h1 { font-size: 54px; font-weight: 900; letter-spacing: 4px; font-family: Georgia, 'Songti SC', serif; line-height: 1.05; }
+  .masthead h1 .cn { font-size: 40px; letter-spacing: 14px; }
+  .masthead .slogan { font-size: 13px; letter-spacing: 3px; color: #6b5b3d; font-style: italic; margin-top: 4px; }
+  .datebar {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #1a1a1a; padding: 7px 0; font-size: 12px;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px;
+  }
+  .datebar .edition { font-weight: 700; }
+  .lead {
+    border: 2px solid #1a1a1a; background: #faf3e2; padding: 16px 20px;
+    margin-bottom: 28px; font-size: 15px; line-height: 1.75; text-align: justify;
+  }
+  .lead .lead-tag { font-weight: 900; letter-spacing: 2px; font-size: 13px; border-bottom: 2px solid #1a1a1a; display: inline-block; margin-bottom: 6px; padding-bottom: 2px; }
+  .column-title {
+    display: flex; align-items: center; margin: 34px 0 18px; gap: 14px;
+  }
+  .column-title .rule { flex: 1; border-top: 3px solid #1a1a1a; }
+  .column-title .rule2 { flex: 1; border-top: 1px solid #1a1a1a; }
+  .column-title h2 {
+    font-size: 30px; font-weight: 900; letter-spacing: 8px; white-space: nowrap;
+    font-family: Georgia, 'Songti SC', serif; text-align: center; padding: 0 6px;
+  }
+  .column-title .en { font-size: 11px; letter-spacing: 4px; color: #6b5b3d; text-transform: uppercase; text-align: center; margin-top: -4px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .card {
+    background: #faf3e2; border: 1px solid #c9bda0; padding: 16px 18px 14px;
+    margin-bottom: 22px; break-inside: avoid;
+  }
+  .card.featured { border: 2px solid #1a1a1a; box-shadow: 4px 4px 0 #d8cba8; }
+  .card .art { width: 100%; border: 1px solid #b8ab8e; background: #fff; }
+  .card .art img { width: 100%; display: block; }
+  .card a.artlink { display: block; text-decoration: none; border: 1px solid #b8ab8e; background: #fff; }
+  .card a.artlink img { width: 100%; display: block; }
+  .card a.artlink:hover { border-color: #8a5a14; box-shadow: 0 0 0 2px rgba(138,90,20,.25); }
+  .card h3 a { color: #1a1a1a; text-decoration: none; border-bottom: 2px solid transparent; transition: border-color .15s; }
+  .card h3 a:hover { border-bottom-color: #8a5a14; color: #8a5a14; }
+  .card .caption { font-size: 11px; color: #6b5b3d; margin-top: 4px; letter-spacing: .5px; }
+  .card h3 { font-size: 20px; line-height: 1.4; margin: 10px 0 6px; font-weight: 900; }
+  .card .headline { font-size: 18px; font-weight: 700; line-height: 1.45; margin: 10px 0 6px; }
+  .card .detail { font-size: 13px; line-height: 1.7; color: #3a3325; text-align: justify; }
+  .card .detail b { color: #1a1a1a; }
+  .card .src {
+    display: block; margin-top: 10px; font-size: 12px; border-top: 1px dotted #9a8d6f;
+    padding-top: 7px; word-break: break-all; color: #4a3c22;
+  }
+  .card .src a { color: #8a5a14; font-weight: 700; text-decoration: underline; }
+  .divider { border: none; border-top: 1px solid #b8ab8e; margin: 8px 0; }
+  .numbered { display: flex; gap: 8px; align-items: flex-start; }
+  .numbered .num { font-size: 26px; font-weight: 900; color: #8a5a14; line-height: 1; }
+  .full { grid-column: 1 / -1; }
+  .imgpair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .footer-links {
+    margin-top: 40px; border-top: 3px double #1a1a1a; padding-top: 16px;
+    font-size: 12px; line-height: 1.9; color: #3a3325;
+  }
+  .footer-links h3 { font-size: 16px; font-weight: 900; letter-spacing: 2px; margin-bottom: 8px; }
+  .footer-links a { color: #8a5a14; word-break: break-all; }
+  .colophon { text-align: center; font-size: 11px; letter-spacing: 2px; color: #6b5b3d; margin-top: 18px; border-top: 1px solid #b8ab8e; padding-top: 10px; }
+  .ticker {
+    background: #1a1a1a; color: #f2e9d6; padding: 7px 12px; font-size: 12px;
+    letter-spacing: 1px; margin-bottom: 22px; text-align: center;
+  }
+  @media (max-width: 720px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .masthead h1 { font-size: 36px; }
+    .masthead h1 .cn { font-size: 28px; letter-spacing: 8px; }
+    .paper { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="masthead">
+    <div class="kicker">The Outdoor Vision Herald · Est. 2026</div>
+    <h1><span class="cn">户外视野时报</span><br>OUTDOOR VISION DAILY</h1>
+    <div class="slogan">「让每一次出发，都有回响」—— 户外 · 运动 · 潮流 每周速览</div>
+  </div>
+  <div class="datebar">
+    <span class="edition">VOL.09 · WEEKLY REVIEW</span>
+    <span>2026年9月29日 · 星期二</span>
+    <span>编辑部 · OUTDOOR DESK</span>
+  </div>
+  <div class="ticker">★ 本期看点：萨洛蒙冲击30亿美元 · HELLY HANSEN维港扬帆 · Columbia水陆探钓赛落地阿尔山 · Goldwin 0秋冬系列发布 · Satisfy × Levi's「STONER」售罄 ★</div>
+
+  <div class="lead">
+    <span class="lead-tag">编者按 · FROM THE EDITOR</span><br>
+    当城市与山野的边界被一次次重新丈量，户外早已不只是装备与参数，而成为一种生活方式的选择。本期《户外视野时报》汇集十篇行业深度报道：从百年品牌的航海行动、30亿美元的扩张雄心，到羊毛天然材质的审美回归、收藏级户外牛仔裤的诞生——我们相信，好的内容值得被像报纸一样认真编排。以下为本周精选，愿你在字里行间，找到下一次出发的理由。
+  </div>
+  <!-- ========== 品牌资讯 ========== -->
+  <div class="column-title">
+    <div class="rule"></div>
+    <div><h2>品牌资讯</h2><div class="en">Brand News</div></div>
+    <div class="rule2"></div>
+  </div>
+
+  <div class="grid2">
+    <!-- 萨洛蒙 30 亿 -->
+    <div class="card featured">
+      <div class="numbered">
+        <div class="num">01</div>
+        <div>
+          <h3>萨洛蒙定下「30亿美元」时间表：2028年，从山野跑进都市</h3>
+          <p class="headline">亚玛芬投资者日定调：萨洛蒙2028年目标营收30亿美元，2026年预计突破25亿美元，中国市场"很快将达10亿美元销售规模"。</p>
+          <div class="imgpair">
+            <div><img class="art" src="img/salomon/salomon_01.jpg" alt="萨洛蒙安纳西总部街景"><div class="caption">萨洛蒙总部所在地法国安纳西街头的品牌门店（图片来源：集团官网）</div></div>
+            <div><img class="art" src="img/salomon/salomon_00.png" alt="亚玛芬长期财务目标对比表"><div class="caption">2026年投资者日更新长期财务算法，板块目标有所调整（图片来源：新闻稿）</div></div>
+          </div>
+          <p class="detail">9月17日，亚玛芬体育在萨洛蒙总部所在地法国安纳西举行上市以来第二次投资者日。CEO郑捷表示，萨洛蒙在中国已拥有350家门店（2024年还不足100家）；品牌CEO Guillaume Meyzenq披露，运动时尚（Sportstyle）鞋类已占业务40%、性能跑鞋占30%，并列出户外参与度、社群健身份额等五大增长驱动力。集团同时将Q3营收增速预期由18%–20%上调至20%–22%。<b>消费者不再想做"功能与风格"的取舍，"现代户外运动鞋"正成为最大赛道。</b></p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/KvzXUGQa4lM_sy3XAYa7Vg" target="_blank">华丽志《亚玛芬集团和萨洛蒙CEO详解：如何让萨洛蒙2028年销售额达到30亿美元？》</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HELLY HANSEN -->
+    <div class="card">
+      <div class="numbered">
+        <div class="num">02</div>
+        <div>
+          <h3>HELLY HANSEN 维港扬帆：150年航海史，变成一场可参与的航行</h3>
+          <p class="headline">16艘帆船驶入维多利亚港，HELLY HANSEN用「品牌行动」让百年航海基因接受风浪检验。</p>
+          <img class="art" src="img/hh/hh_00.jpg" alt="HELLY HANSEN帆船驶入维港">
+          <div class="caption">16艘帆船驶入维多利亚港，开启 HELLY HANSEN 香港航海主题活动</div>
+          <p class="detail">品牌以「Storydoing」串联整场活动：今年1月先联手香港游艇会（前身是1849年成立的维多利亚赛舟会）让嘉宾登船体验；9月以"初次登船—扬帆出海—归航加冕"三篇章深化参与，100余位嘉宾亲手操作绳索。全球品牌代言人王一博从镜头走上甲板，担任前帆手与领航员；活动次日更驶向离岛，与中国国家地理专家展开徒步、钓鱼与火山群考察。</p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/aLRc_dhSewz35q8WF9LtCw" target="_blank">品牌星球Brandstar《近150年，航海为何始终是 HELLY HANSEN 的行动原点？》</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columbia 玩徒派对 -->
+    <div class="card">
+      <div class="numbered">
+        <div class="num">03</div>
+        <div>
+          <h3>Columbia 首创「水陆速穿探钓赛」落地阿尔山</h3>
+          <p class="headline">2026玩徒派对把速穿、漂流、探钓做成双人组队赛，蒋奇明首度组队亮相。</p>
+          <img class="art" src="img/col_01.png" alt="Columbia玩徒派对阿尔山航拍">
+          <div class="caption">内蒙古阿尔山国家森林公园中的 Columbia 玩徒派对现场（图片来源：Mounster）</div>
+          <p class="detail">2026年9月16日，Columbia于阿尔山开启「2026玩徒派对」，首创水陆融合路线：10公里山林速穿、火山秘境、双人乘筏漂流与河岸抛竿探钓。现场"风雨实验室"以声、风、雨、光模拟天气，体验式发布全新软壳三合一外套，并追溯品牌1984年首创的Interchange System三合一系统；玩徒派对自2024年发起，主张"户外不是用来征服的，而是用来玩的"。</p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster山系文化《Columbia 玩徒派对首创水陆速穿探钓赛落地阿尔山》</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 人事变动 -->
+    <div class="card">
+      <div class="numbered">
+        <div class="num">04</div>
+        <div>
+          <h3>五大运动户外集团同日换帅：Rapha、Puma、Kontoor、Oberalp、Bergans</h3>
+          <p class="headline">Rapha CEO离职、Puma新设欧洲区总经理，Kontoor、Oberalp、Bergans同步官宣高管任命。</p>
+          <img class="art" src="img/rapa/rapa_02.png" alt="Puma高管任命">
+          <div class="caption">Puma欧洲区总经理 Fokko de Rooij（左）与中欧集群总经理 Daniel Pustina（右）</div>
+          <p class="detail">英国骑行品牌Rapha宣布重组架构，CEO Fran Millar离职（她曾深度参与天空车队与Team Ineos运营）；Puma任命Fokko de Rooij为欧洲区总经理（10月1日生效），Daniel Pustina执掌德语区、比荷卢、东欧等中欧集群；Kontoor Brands（Wrangler与Helly Hansen母公司）新增两位董事；意大利Oberalp集团与挪威Bergans of Norway也分别迎来新任CEO。</p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/Vrvr62IKnJOo6NHvssaklw" target="_blank">华丽志《运动户外人事｜Rapha、Puma、Kontoor Brands、Oberalp、Bergans》</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ========== 新品动态 ========== -->
+  <div class="column-title">
+    <div class="rule"></div>
+    <div><h2>新品动态</h2><div class="en">New Arrivals</div></div>
+    <div class="rule2"></div>
+  </div>
+
+  <div class="grid2">
+    <!-- Goldwin 0 -->
+    <div class="card featured">
+      <div class="numbered">
+        <div class="num">01</div>
+        <div>
+          <h3>Goldwin 0 发布2026秋冬系列：以「空气」为题，探索城市与自然交界</h3>
+          <p class="headline">上海油罐艺术中心化身沉浸式"交界地带"，充气背心、轻量盖毯、3D Box Baffle羽绒夹克悉数登场。</p>
+          <img class="art" src="img/goldwin0/goldwin0_15.png" alt="Goldwin 0 充气背心">
+          <div class="caption">充气背心将空气作为隔热层，Auxetic结构保持柔韧灵活（Via Goldwin 0）</div>
+          <p class="detail">Goldwin实验性支线Goldwin 0在设计师Nur Abbas带领下，把2026秋冬系列灵感指向"空气"：充气背心以Auxetic结构锁住体温；轻量盖毯以金属绳扣实现多种穿法；3D Box Baffle羽绒夹克用折纸式隔层告别臃肿；茧型夹克采用WINDSTOPPER面料与钛溅射内衬；另有超高密度棉及腰夹克、Helicoid长裤与羊毛抓绒Hoodie。系列已于9月25日起在Goldwin全国门店、天猫旗舰店及官方小程序同步发售。</p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/JbO-NOkElNasRYnIRULxzQ" target="_blank">NOWRE《从面料到结构，Goldwin 0 如何定义服装与环境的关系？》</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cactus Jack x OAKLEY -->
+    <div class="card">
+      <div class="numbered">
+        <div class="num">02</div>
+        <div>
+          <h3>Cactus Jack × OAKLEY 首波联名眼镜「CHAPTER 001」登场</h3>
+          <p class="headline">Travis Scott自选三款镜框重塑，Nicolas Winding Refn操刀宣传片，Justin Jefferson出镜。</p>
+          <div class="imgpair">
+            <div><img class="art" src="img/cactusjack/cactusjack_01.jpg" alt="Plantaris 眼镜"><div class="caption">Plantaris 镜框，大地色调×限定图案（坐标元素贯穿视觉）</div></div>
+            <div><img class="art" src="img/cactusjack/cactusjack_03.jpg" alt="Straight Jacket 99"><div class="caption">Straight Jacket 99 镜框，金属分叉镜腿</div></div>
+          </div>
+          <p class="detail">系列含Plantaris、Straight Jacket 99、Eye Jacket Redux三款由Travis自选并重新设计的镜框，每款两款大地色配色与专属图案，附赠定制微型收纳包与特制礼盒；同时推出印有主题图案的卫衣、长袖、短袖与冷帽。宣传视觉由《亡命驾驶》导演Nicolas Winding Refn执导，NFL明星Justin Jefferson出演。现已于Travis Scott官网抢先发售，随后登陆OAKLEY线上渠道与全球直营门店。</p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/zu3iFqOfIShnnmI2_P3ZNQ" target="_blank">潮流末班车《Cactus Jack × OAKLEY 首波联名眼镜系列「CHAPTER 001」正式登场！》</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timberland x Number(N)ine -->
+    <div class="card">
+      <div class="numbered">
+        <div class="num">03</div>
+        <div>
+          <h3>全球仅18双！Timberland × Number (N)ine 首度联名</h3>
+          <p class="headline">宫下贵裕以全黑6英寸防水工装靴为蓝本，定制拉链附件压印品牌名，10月1日银座快闪店发售9双。</p>
+          <img class="art" src="img/timberland/timberland_00.jpg" alt="Timberland x Number (N)ine 联名靴">
+          <div class="caption">黑白烟雾氛围下的联名靴宣传视觉（宫下贵裕主导企划）</div>
+          <p class="detail">添柏岚Timberland与设计师宫下贵裕主理品牌Number (N)ine By Takahiro Miyashita首次联名：靴身、鞋带及全部组件采用全黑设计，搭配专属定制拉链附件；宣传视觉由宫下贵裕主导、造型Tsuyoshi Noguchi、摄影TAKAY，日本品牌blackmeans参与定制细节。10月1日银座GINZA SIX的Timberland限时快闪店发售9双，Number (N)ine官方线上商店再售9双，全球合计仅18双。</p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/DHzvS6qz6xJzEksvBx3Xbg" target="_blank">潮流末班车《全球仅18双，Timberland × Number (N)ine by宫下贵裕首度联名公布！》</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- nanamica x REGAL -->
+    <div class="card">
+      <div class="numbered">
+        <div class="num">04</div>
+        <div>
+          <h3>nanamica × REGAL Shoe & Co. 第四弹：GORE-TEX 皮鞋正式发售</h3>
+          <p class="headline">内隐式翼纹德比造型×GORE-TEX薄膜，藏青麂皮与黑色光面双配色9月25日开售。</p>
+          <img class="art" src="img/nanamica/nanamica_02.jpg" alt="nanamica x REGAL 藏青麂皮鞋">
+          <div class="caption">藏青麂皮鞋面搭配白色车线与白色外底，烘托海洋航海氛围</div>
+          <p class="detail">机能品牌nanamica与REGAL支线REGAL Shoe & Co.推出第四回联名GORE-TEX Plain Toe Shoes：延续防水透湿的GORE-TEX薄膜，采用正式感十足的内隐式翼纹（内羽根）德比造型与轻盈的沿条缝制工艺，沿用REGAL WALKER系列标志性斜楦鞋型；鞋面为日本山阳制革厂鞣制牛皮，外底搭载Vibram迷你波纹鞋底，鞋垫采用Ortholite材质。9月25日起于nanamica线下门店及官方线上商城开售。</p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/YfEz7GpodmJVGu9LT8U9GA" target="_blank">潮流末班车《第四弹来袭，nanamica × REGAL Shoe & Co. GORE-TEX皮鞋正式发售！》</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ========== 时尚趋势 ========== -->
+  <div class="column-title">
+    <div class="rule"></div>
+    <div><h2>时尚趋势</h2><div class="en">Trend Watch</div></div>
+    <div class="rule2"></div>
+  </div>
+
+  <div class="grid2">
+    <!-- icebreaker -->
+    <div class="card featured">
+      <div class="numbered">
+        <div class="num">01</div>
+        <div>
+          <h3>从城市到户外：羊毛为什么总能保持"品质感"</h3>
+          <p class="headline">当"老钱风""静奢风"回归，天然材质成为高级感的新答案——icebreaker用新西兰美丽诺羊毛重构现代人的穿衣逻辑。</p>
+          <div class="imgpair">
+            <div><img class="art" src="img/icebreaker/icebreaker_10.png" alt="icebreaker墨尔本全球旗舰店"><div class="caption">icebreaker 2026年7月在墨尔本开业的全球旗舰店（Move to natural）</div></div>
+            <div><img class="art" src="img/icebreaker/icebreaker_19.jpg" alt="刘学义 x icebreaker"><div class="caption">品牌大使刘学义身着15.5微米超细羊毛 MerinoFine Pique 长袖Polo</div></div>
+          </div>
+          <p class="detail">潮流从浮华走向克制，"这件衣服由什么做成"重新成为时尚讨论的关键词。icebreaker创始人Jeremy Moon于1995年创立品牌，从贴身层起步建立以天然材料为核心的穿衣逻辑：每年合作的近70家新西兰牧场中，仅2%的羊毛产品符合其选材标准。从塔拉纳基山事故中被验证的Merino 300贴身层，到MerinoLoft羊毛棉服、MerinoVent毛壳冲锋衣，品牌将登山时代就存在的温控逻辑带进城市日常——<b>所谓"老钱感"，真正的来源是材料本身。</b></p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/NEOvqkb1jnB20jwjbmB9Gw" target="_blank">三联生活周刊·三联.CREATIVE《从城市到户外，羊毛为什么总能保持"品质感"》</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Satisfy x Levi's -->
+    <div class="card featured">
+      <div class="numbered">
+        <div class="num">02</div>
+        <div>
+          <h3>收藏级「户外牛仔裤」：Satisfy × Levi's® 的两次联名如何封神</h3>
+          <p class="headline">从200条限量501到「STONER」再度售罄：Vintage历史感×Rippy Dyneema科技，碰撞出二级市场千美元级溢价。</p>
+          <div class="imgpair">
+            <div><img class="art" src="img/satisfy/satisfy_00.png" alt="Levi's 501 皮牌特写"><div class="caption">Levi's 经典501皮牌：Re-Possessed™ 概念的起点</div></div>
+            <div><img class="art" src="img/satisfy/satisfy_16.png" alt="STONER 系列 T恤"><div class="caption">「STONER」系列：攀岩者上身 MothTech™ T-Shirt（Via Satisfy）</div></div>
+          </div>
+          <p class="detail">2024年双方首度合作，从Levi's Archive中挑选Vintage 501并仅制200条：膝部、后袋加入Rippy™ Dyneema®，胯部使用四向弹性Justice™ Dyneema®，如今二手平台部分全新成交价已超千美元。2026年第二波「STONER」延续Re-Possessed™概念，扩展出Climb Shirt与MothTech™ T-Shirt。Levi's近年还与UNDERCOVER（模块化Trucker Jacket）、sacai（Type I/II/III重构）、Kiko Kostadinov、伦敦Vintage单位194合作——<b>百年品牌正在用"重新拆解经典"维持新鲜感。</b></p>
+          <span class="src">原文链接：<a href="https://mp.weixin.qq.com/s/vjemMQXZ_OT6uXASlqmE7g" target="_blank">NOWRE《Satisfy x Levi's® 如何打造出收藏级「户外牛仔裤」？》</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ========== 山系快讯 ========== -->
+  <div class="column-title">
+    <div class="rule"></div>
+    <div><h2>山系快讯</h2><div class="en">Trail Dispatch</div></div>
+    <div class="rule2"></div>
+  </div>
+
+  <div class="ticker">▼ 以下快讯摘自 Mounster 山系文化《Columbia 玩徒派对首创水陆速穿探钓赛落地阿尔山》一文所附「Mounster Weekly News」速览 ▼</div>
+
+  <div class="grid2">
+    <!-- 始祖鸟 -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">始祖鸟运动员"海怪"完成 TOR450 冰川之旅</a></h3>
+      <p class="headline">以144小时54分11秒完成约450公里、爬升约32000米的超长距离挑战，全场第10名，刷新中国选手最快完赛纪录。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_04.png" alt="始祖鸟运动员海怪冲线"></a>
+      <div class="caption">海怪冲过 TORX with KAILAS 终点拱门（COURMAYEUR MONT BLANC）· 点击图片查看原文</div>
+      <p class="detail">TOR450深入瓦莱达奥斯塔高山腹地，全程不设额外赛道标识，需GPS自主导航、自行管理补给与节奏。海怪着Sylan Pro越野跑鞋与Norvan系列装备完赛，其成绩背后是两度完赛UTMB-PTL、连续十年参加宁海越野挑战赛的积累。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- adidas 山川里 -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">adidas「山川里」户外生活发布会落地四川松潘</a></h3>
+      <p class="headline">雪宝顶、红星岩、阿岭扎嘎三座神山环伺，FW26系列与行山体验同步亮相。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_07.png" alt="adidas 山川里发布会"></a>
+      <div class="caption">2026年9月20日，adidas「山川里」发布会于四川松潘启幕 · 点击图片查看原文</div>
+      <p class="detail">发布会将"山、川、里"解读为空间指引、时间探索与停留之地；大中华区高管Molly Gu介绍产品矩阵、视觉形象、场景叙事与渠道体验的全方位焕新。苏翊鸣、主厨"哼哼"、植物学者顾有容三位"山人代表"登台；现场设山脊线（寻牦牛、骑马、4000m冲顶）与河谷线（辨认菌菇、射箭、亲子植物观察）两条行山体验路线。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- DESCENTE -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">DESCENTE 静安嘉里中心城市概念店启幕</a></h3>
+      <p class="headline">「自在主场」主题活动×D:MODE「自在较量场」城市综训，陈伟霆、杨千嬅与两位世界冠军同场切磋。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_12.png" alt="DESCENTE D-MOVER CLUB 行动家力练场"></a>
+      <div class="caption">D-MOVER CLUB「行动家力练场」户外综训场景（Image: DESCENTE）· 点击图片查看原文</div>
+      <p class="detail">2026年9月20日，迪桑特于上海静安嘉里中心举办概念店开幕。新店以"明日世界"为主题，一层BLANC空间聚焦ALLTERRAIN系列，陈列艺术家鞠婷装置《细雨》与Daniel Arsham雕塑《Victoria Labyrinth》；代言人陈伟霆、挚友杨千嬅携手蹦床世界冠军何雯娜、游泳世界冠军孙佳俊担任队长完成滑雪机、划船机等综合挑战。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- Salomon Gravel -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">萨洛蒙 2026 Gravel 无固定路线挑战赛上海收官</a></h3>
+      <p class="headline">「老弄堂，新花头」：2小时内自主规划打卡至少6个CP点，新增三人团队赛，复报率近50%。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_17.png" alt="Salomon Gravel 上海挑战赛"></a>
+      <div class="caption">2026年9月21日，Salomon Gravel 上海站于新天地收官 · 点击图片查看原文</div>
+      <p class="detail">路线以新天地为纽带，串联Geographer地理学家、The Press申报馆、Salomon小白楼·福郡（Gravel策展空间）及公益点熊爪咖啡；汇聚黑暗跑团及全球近五十支跑团，申加升、唐景燕、郭采洁、黄曦彦等专业与跨界跑者同场竞技，让跑步成为连接多元生活方式的语言。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- BURTON -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">BURTON 50周年盛典登陆上海，启幕2027雪季</a></h3>
+      <p class="headline">「弄堂Battle」雪地果酱赛×收藏特展：从1977年首块单板到苏翊鸣冬奥夺金用板。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_22.png" alt="BURTON 50周年收藏特展"></a>
+      <div class="caption">「50 Longtang Battle」：BURTON 50周年上海弄堂活动砖墙 · 点击图片查看原文</div>
+      <p class="detail">2026年9月12日，BURTON 50周年盛典以"经典新绎 先锋开局"为主题在上海启幕，CEO Donna Carpenter与Mark McMorris、Zeb Powell、刘佳宇等名将出席；上生新所、白玉兰广场两店同步开业。收藏家比利白策展的特展展出1977年首块单板、Craig Kelly签名板、RUN DMC联名板等；9月13日大连东港店以"竞速山谷"概念开业。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- NikeSKIMS -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">NikeSKIMS 正式登陆中国：上海慢闪空间即将启幕</a></h3>
+      <p class="headline">「为形而塑，为动而生」：九大面料系列首发，9月29日兴业太古汇体验空间开幕。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_27.png" alt="NikeSKIMS 系列"></a>
+      <div class="caption">NikeSKIMS 登陆中国：为形而生，为动而生 · 点击图片查看原文</div>
+      <p class="detail">耐克与SKIMS联名品牌NikeSKIMS正式进入中国市场并选择上海为起点：融合运动科技与"为每种身形而设计"的女性身形美学，首波涵盖Performance Cotton Blend、Weightless、Satin Shine等九大面料系列。上海兴业太古汇线下体验空间9月29日启幕并开放至2027年2月，提供独家裁剪服务与社群活动。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- HUNTER -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">HUNTER 雨中大秀：跨越世纪赴一场英伦之约</a></h3>
+      <p class="headline">品牌创立170周年×惠灵顿雨靴70周年，"庄园来信 雨叙170"双周年主题展登陆上海。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_28.png" alt="HUNTER 雨中大秀"></a>
+      <div class="caption">上海余德耀美术馆「庄园来信 雨叙170」雨中大秀暨双周年主题展 · 点击图片查看原文</div>
+      <p class="detail">大秀以1856年《庄园来信》、1956年《雨幕初履》、2026年《向野而行》三大篇章串联品牌历史；品牌大使宋祖儿、超模奚梦瑶等出席。时间线回顾了1956年经典雨靴诞生、1981年戴安娜与查尔斯王子身着品牌雨靴的经典影像、2023年ABG完成品牌知识产权收购等里程碑。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- FILA -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">「意式庭院」搬入沈阳中街：FILA TOPIA 沈阳壹号旗舰店启幕</a></h3>
+      <p class="headline">全国单店面积最大门店落地沈阳，帕拉第奥建筑美学×AR网球互动×AI智能试衣。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_33.png" alt="FILA TOPIA 沈阳壹号旗舰店"></a>
+      <div class="caption">2026年9月21日开业，1740平米意式美学空间（Image: FILA）· 点击图片查看原文</div>
+      <p class="detail">FILA全国第二家TOPIA新壹号店距沈阳故宫步行仅十分钟：外立面取帕拉第奥式拱门与金属矩阵，店内以罗马柱、钢构演绎《挥拍者》《沉思者》《美神挥杆》三组雕塑；中庭透光穹顶与"斗兽场"风格吧台相映。店内可扫描雕塑进入AR网球场、体验触碰式AI智能试衣，并借势2026中国网球公开赛打造"Have A FILA Day"主题空间。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- BROMPTON -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">2026小布世界锦标赛·中国站落地深圳</a></h3>
+      <p class="headline">12月11-13日笔架山体育公园开赛：勒芒式发车、G Line专属组别、FREELANDER独家冠名。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_38.png" alt="BWCC 2026 中国站"></a>
+      <div class="caption">勒芒式发车现场：折叠车竞速×完赛区 · 点击图片查看原文</div>
+      <p class="detail">赛事沿用"勒芒式发车"——发车前车辆须完全折叠，指令发出后跑向车辆展开骑行；设个人赛（经典BROMPTON 16英寸组别分精英组与公开组，新增G Line专属组别）与5人团体赛，共四大竞赛组别、六种参赛方式。官方售票10月13日于BROMPTON会员小程序开启，"Road to BWCC"备赛集卡同步上线。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- Patagonia -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Patagonia 修补节登陆上海：让缝补者的时间与技艺被看见</a></h3>
+      <p class="headline">154件退役装备变身补丁艺术装置，"修补档案室"收录八件装备重新修补。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_43.png" alt="Patagonia 修补节"></a>
+      <div class="caption">「看得见的补丁」：Patagonia 修补节宣传海报 · 点击图片查看原文</div>
+      <p class="detail">9月19日至10月7日，Patagonia于上海静安区铜仁路92号开启"修补节"（Visible Repairs），每天12:00-20:00向公众开放；154件原本可能被填埋或回收的退役装备与布料交由艺术家做成装置并挂上铜仁路街头，"修补档案室"收录八件装备由维修师重新寻找修补方案。展览后续将巡展至南京、深圳、杭州等城市。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+
+    <!-- Element x and wander -->
+    <div class="card">
+      <h3><a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Element 十周年携手 and wander：三度联名探索城市与户外的机能美学</a></h3>
+      <p class="headline">「Tomorrow is a shining day」——街头品牌与日本山系品牌第三次碰撞。</p>
+      <a class="artlink" href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank"><img src="img_crop/col_44.png" alt="Element x and wander"></a>
+      <div class="caption">Element 十周年特别企划 Vol.1 × and wander 第三次联名系列 · 点击图片查看原文</div>
+      <p class="detail">作为Element十周年特别企划Vol.1，街头品牌Element与日本户外山系品牌and wander带来第三次联名，以"Tomorrow is a shining day"为Slogan，在契合and wander山系基因的同时将对未来的期许融入产品之中。</p>
+      <span class="src">源自：<a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster 山系文化快讯</a></span>
+    </div>
+  </div>
+  <!-- ========== 文末链接总表 ========== -->
+  <div class="footer-links">
+    <h3>◆ 本期全部原文链接 · SOURCE INDEX ◆</h3>
+    <div>1. <a href="https://mp.weixin.qq.com/s/NEOvqkb1jnB20jwjbmB9Gw" target="_blank">三联生活周刊 · 从城市到户外，羊毛为什么总能保持"品质感"（icebreaker）</a></div>
+    <div>2. <a href="https://mp.weixin.qq.com/s/aLRc_dhSewz35q8WF9LtCw" target="_blank">品牌星球Brandstar · 近150年，航海为何始终是 HELLY HANSEN 的行动原点？</a></div>
+    <div>3. <a href="https://mp.weixin.qq.com/s/KvzXUGQa4lM_sy3XAYa7Vg" target="_blank">华丽志 · 亚玛芬集团和萨洛蒙CEO详解：如何让萨洛蒙2028年销售额达到30亿美元？</a></div>
+    <div>4. <a href="https://mp.weixin.qq.com/s/Vrvr62IKnJOo6NHvssaklw" target="_blank">华丽志 · 运动户外人事｜Rapha、Puma、Kontoor Brands、Oberalp、Bergans</a></div>
+    <div>5. <a href="https://mp.weixin.qq.com/s/SqODEJrCYlSFzlga1dF2Og" target="_blank">Mounster山系文化 · Columbia 玩徒派对首创水陆速穿探钓赛落地阿尔山</a></div>
+    <div>6. <a href="https://mp.weixin.qq.com/s/JbO-NOkElNasRYnIRULxzQ" target="_blank">NOWRE · 从面料到结构，Goldwin 0 如何定义服装与环境的关系？</a></div>
+    <div>7. <a href="https://mp.weixin.qq.com/s/vjemMQXZ_OT6uXASlqmE7g" target="_blank">NOWRE · Satisfy x Levi's® 如何打造出收藏级「户外牛仔裤」？</a></div>
+    <div>8. <a href="https://mp.weixin.qq.com/s/zu3iFqOfIShnnmI2_P3ZNQ" target="_blank">潮流末班车 · Cactus Jack × OAKLEY 首波联名眼镜系列「CHAPTER 001」正式登场！</a></div>
+    <div>9. <a href="https://mp.weixin.qq.com/s/DHzvS6qz6xJzEksvBx3Xbg" target="_blank">潮流末班车 · 全球仅18双，Timberland × Number (N)ine by宮下貴裕首度联名公布！</a></div>
+    <div>10. <a href="https://mp.weixin.qq.com/s/YfEz7GpodmJVGu9LT8U9GA" target="_blank">潮流末班车 · 第四弹来袭，nanamica × REGAL Shoe & Co. GORE-TEX皮鞋正式发售！</a></div>
+  </div>
+
+  <div class="colophon">
+    OUTDOOR VISION DAILY · 户外视野时报<br>
+    本期共辑录 10 篇公众号深度内容 · 文字以原文为准，图片仅作辅助理解 · 版权归原作者及公众号所有<br>
+    排版风格：复古报业 / 杂志编辑 · 编辑部 2026.09.29
+  </div>
+
+</div>
+</body>
+</html>
